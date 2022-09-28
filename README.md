@@ -1,5 +1,7 @@
 # EXPERIMENT NO 05 INTERFACING ANALOG OUTPUT SERVO MOTOR WITH ARDUINO
+NAME: JEGATHISH S
 
+REG NO: 212221230041
 ### AIM
 To interface an Analog output (servo motor) and modify the angular displacement of the servo using PWM signal .
 COMPONENTS REQUIRED:
@@ -25,6 +27,8 @@ Servo motors are used for angular positioning, such as in radio control airplane
 
 
 #### Figure-01 SERVO MOTOR SPLIT VIEW 
+
+
 Control 
 An external controller (such as the Arduino) tells the servo where to go with a signal know as pulse proportional modulation (PPM) or pulse code modulation (which is often confused with pulse width modulation, PWM). PWM uses 1 to 2ms out of a 20ms time period to encode its information.
  
@@ -38,21 +42,9 @@ An external controller (such as the Arduino) tells the servo where to go with a 
 
 ### Figure-03 SERVO MOTOR OVERVIEW 
 
- 
 
-
- 
-
-
-
-
-
-CIRCUIT DIAGRAM
- 
- 
- ![image](https://user-images.githubusercontent.com/36288975/163544618-6eb8a7b5-7f1a-428a-8d9f-fd899b145efb.png)
-
-### FIGURE 04 CIRCUIT DIAGRAM
+### CIRCUIT DIAGRAM:
+![output](s3.png)
 
 ### PROCEDURE:
 1.	Connect the circuit as per the circuit diagram 
@@ -66,15 +58,76 @@ CIRCUIT DIAGRAM
 9.	Ensure safety before powering up the device.
 
 
+
 ### PROGRAM :
- 
+### SERIAL MONITOR:
+ ```
+// C++ code
 
+#include <Servo.h>
+int pos = 0;
+Servo servo_9;
 
+void setup()
+{
+  Serial.begin(9600);
+  servo_9.attach(9, 500, 2500);//
+  
+}
 
+void loop()
+{
+  for (pos = 0; pos <= 180; pos += 1) 
+  {
+    servo_9.write(pos);
+    delay(15);
+  	Serial.print("Angle of Server: ");
+  	Serial.println(pos);
+  }
+  for (pos = 180; pos >= 0; pos -= 1) 
+  {
+    servo_9.write(pos);
+    delay(15);
+  	Serial.print("Angle of Server: ");
+  	Serial.println(pos);
+  }
+}
 
+ ```
+ ![output](s1.png)
+### Toggle Graph:
+```
+// C++ code
 
+#include <Servo.h>
+int pos = 0;
+Servo servo_9;
 
+void setup()
+{
+  Serial.begin(9600);
+  servo_9.attach(9, 500, 2500);//
+  
+}
 
+void loop()
+{
+  for (pos = 0; pos <= 180; pos += 1) 
+  {
+    servo_9.write(pos);
+    delay(15);
+  	Serial.println(pos);
+  }
+  for (pos = 180; pos >= 0; pos -= 1) 
+  {
+    servo_9.write(pos);
+    delay(15);
+  	Serial.println(pos);
+  }
+}
+
+```
+![output](s2.png)
 
 
 ### RESULTS: 
